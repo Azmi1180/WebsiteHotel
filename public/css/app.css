@@ -1,0 +1,264 @@
+html{
+    overflow-x: hidden;
+}
+body {
+    margin: 0;
+    background-color: #f9f9f9;
+    width: 100%;
+    overflow-x: none;
+}
+
+/* ========== Landing Page ========== */
+
+.extremewidth{
+    width: 1520px !important;
+    overflow-x: none;
+}
+
+.main {
+    /* min-height: 1000px; */
+    max-height: 2000px;
+}
+
+.top {
+    display: flex;
+    justify-content: center;
+    background-color: #009B97;
+}
+
+.top-wrapper {
+    /* position: absolute; */
+    /* height: 70vh; */
+    height: 520px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-top: 100px;
+}
+
+.text-wrapper {
+    /* background-color: aqua;  */
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 55vh;
+    margin: 5rem 4rem 2rem 5rem;
+    /* border: solid 1px black; */
+}
+
+.text-wrapper > * {
+    color: white;
+}
+
+
+
+
+
+.top-header-text{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 60px;
+    line-height: 80px;
+    width: 70%;
+}
+
+.descriptive-text{
+    max-width: 400px;
+    margin-top: 20px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.image-wrapper {
+    top: 155px;
+    right: 100px;
+    margin: 4rem ;
+    /* border: solid 1px black; */
+    position: relative;
+    /* flex-direction: row-reverse; */
+    justify-content: space-around;
+    width: 1000px;
+    height: 50%;
+    /* object-fit: cover; */
+}
+
+/* .image-wrapper > img {
+
+    box-shadow: -2px 4px 10px 3px rgb(0, 0, 0);
+} */
+
+.image-wrapper img {
+    width: 120%;
+    position: absolute;
+    /* border-radius: 50px; */
+    object-fit: cover;
+    position: absolute;
+    /* transform: translate(-30, -40); */
+}
+
+.top-image-1{
+    /* background-image: url('../img/landingtop3.png'); */
+    transform: translate(-30%, -30%);
+    /* object-fit: cover; */
+}
+
+.top-image-2{
+    transform: translate(-20%, -20%);
+}
+
+.top-image-3{
+    transform: translate(-10%, -10%);
+}
+
+/* .top-image-1 {
+    top
+} */
+
+*{
+    overflow-x: none;
+}
+    .container{
+        margin: 0;
+        width: 100%;
+        min-height: 340px;
+        /* background: yellow; */
+
+    }
+
+    .container-flex{
+        /* min-height: 1900px;
+        max-height: 1420px; */
+        display: flex;
+        flex-direction: column;
+        /* align-content: center; */
+        align-items: center;
+
+    }
+
+    .form-checkin{
+        justify-content: center;
+        min-width: 50rem;
+        margin-top: 5rem;
+        min-height: 200px;
+        max-height: 300px;
+        /* border: solid 1px black; */
+        background-color: #ffffff;
+        box-shadow: 0px 0px 20px 3px rgba(0, 0, 0, 0.25);
+        border-radius: 30px;
+    }
+
+    .card-checkin {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card-checkin .card-head{
+        margin-top: 1.5rem;
+        font-size: 28px;
+        font-weight: 600;
+        display: flex;
+        flex-direction: row;
+
+    }
+
+    .card-checkin .card-main{
+        display: flex;
+        flex-direction: row;
+        gap: 4rem;
+        margin-top: 2.4rem;
+    }
+
+    .mid-wrapper{
+        justify-content: center;
+        max-width: 85%;
+        margin-top: 7rem;
+        min-height: 200px;
+        max-height: 700px;
+        /* border: solid 1px black; */
+        background-color: #ffffff;
+        /* background: yellow; */
+    }
+
+    .section-about {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .section-fasilitas {
+        /* position: ; */
+        margin-top: 4rem;
+        padding-bottom: 10rem;
+        display: flex;
+        flex-direction: column;
+        min-height: 40vh;
+    }
+
+    .mid-text-wrapper {
+        width: 50%;
+    }
+
+    .mid-header-text {
+        font-weight: 700;
+        font-size: 34px;
+        margin-bottom: 20px;
+    }
+
+    .mid-descriptive-text{
+        font-weight: 500;
+        font-size: 20px;
+    }
+
+    .mid-img-wrapper {
+        /* position: absolute; */
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+    }
+
+    .mid-img-wrapper img{
+
+        width: 50%;
+    }
+
+    .mid-about-img1 {
+        transform: translate(23rem, 20px);
+
+    }
+
+    .mid-about-img2{
+        transform: translate(15rem, -20px);
+        z-index: 4;
+    }
+
+    .fasilitas-text-wrapper {
+        display: flex;
+        flex-direction: column;
+        width: 91%;
+    }
+
+    .fasilitas-img-wrapper {
+        margin-top: 2.5rem;
+        /* margin-left: 1rem; */
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .img-fasilitas a img{
+        width: 80%;
+    }
+
+    /* End CSS of Landing Page */
+
+
+
+
+
+    /* Start CSS of Kamar */
+
+
+    /* End CSS of Kamar */
