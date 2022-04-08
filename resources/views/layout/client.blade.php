@@ -24,26 +24,26 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
-    
+
     <style>
-        
+
     </style>
 </head>
-<body id="page-top">
+<body id="page-top" style="display: flex; flex-direction: column; justify-content : space-between; min-height:100%;">
     @include('component.navbar')
 
     <div class="main">
       @yield('content')
     </div>
 
-    {{-- @include('component.footer') --}}
-    
+    @include('component.footer')
+
     @yield('script')
-    
+
     <script>
         // When the user scrolls down 80px from the top of the document, resize the navbar's padding and the logo's font size
         window.onscroll = function() {scrollFunction()};
-    
+
         function scrollFunction() {
         if (window.scrollY > 80) {
             console.log("haha")
@@ -58,8 +58,8 @@
             document.getElementById("logo").style.fontSize = "35px";
           }
         }
-    
+
       </script>
-    
+
 </body>
 </html>

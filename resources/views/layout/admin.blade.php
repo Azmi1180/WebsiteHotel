@@ -87,15 +87,25 @@
             <h2>1O1 Hotel</h2>
             <ul>
                 <li><a href="#">Home</a></li>
-                <li><a href="#"></i>Table User</a></li>
-                <li><a href="/admin/kamar/index"></i>Table Kamar</a></li>
-                {{-- <li><a href="#"></i>Buat Kamar</a></li> --}}
-                <li><a href="#"></i>Edit Fasilitas</a></li>
+
+                @if (Auth::user()->role == 'resepsionis')
+                    <li><a href="/resepsionis/booking/index"></i>Daftar Booking</a></li>
+                @endif
+
+                @if (Auth::user()->role == 'admin')
+                    <li><a href="#"></i>Table User</a></li>
+                    <li><a href="/admin/kamar/index"></i>Table Kamar</a></li>
+                    <li><a href="#"></i>Edit Fasilitas</a></li>
+                @endif
 
             </ul>
             <div class="logout">
-              <a href="#">Logout</a>
-
+                <form action="/logout" method="POST">
+                    @csrf
+                    <button type="submit">
+                        <a type="submit">Logout</a>
+                    </button>
+                </form>
             </div>
             {{-- <ul>
                 <li><a href="#"></i>Logout</a></li>

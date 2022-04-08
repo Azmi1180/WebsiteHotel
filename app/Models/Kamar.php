@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Reservasi;
 
 class Kamar extends Model
 {
@@ -13,4 +14,9 @@ class Kamar extends Model
 
     protected $fillable = ['nama_kamar', 'jumlah_kamar', 'jumlah_tetap', 'harga', 'deskripsi'];
 
+
+    public function reservasi()
+    {
+        return hasMany('App\Reservasi');
+    }
 }

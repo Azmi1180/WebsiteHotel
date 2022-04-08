@@ -93,6 +93,7 @@
     .deskripsi-detail-kamar {
         font-size: 2vh;
         margin: 2.4rem;
+        width: 800vh;
     }
 
     .card-title {
@@ -107,7 +108,7 @@
         border-radius: 20px;
         position: relative;
         bottom: 8vh;
-        
+
     }
 
     .title-top-wrapper {
@@ -129,13 +130,13 @@
     <div class="top-fasilitas">
         <div class="top-wrapper-fasilitas">
             <div class="fasilitas-top-wrapper">
-                <img src="{{ asset('img/kamar_topwrapper.png') }}" alt="" width="100%">        
+                <img src="{{ asset('img/kamar_topwrapper.png') }}" alt="" width="100%">
             </div>
             {{-- {{Auth::user()->nama;}} --}}
         </div>
             {{-- <form action="/logout" method="post">
                 @csrf
-                
+
                 <button type="submit">Logout</button>
             </form> --}}
     </div>
@@ -144,7 +145,7 @@
             Detail Kamar
         </div>
     </div>
-    
+
 </div>
 
 <div class="container container-flex" style="height: 870px;">
@@ -155,25 +156,25 @@
                 <img src="{{ asset('img/kamar/kamar_1.png') }}" alt="" width="100%"  class="content-book">
                 <div class="side-book-content">
                     <div class="judul-book-kamar">
-                        Chill Deluxe
+                        {{ $kamar->nama_kamar }}
                     </div>
                     <div class="harga">
-                        Rp. 580.000,00/malam
+                        Rp. {{ number_format($kamar->harga, 0, '', '.') }},00 / malam
                     </div>
                     <div class="button-section">
-                        <a href="book/form/" class="book-button">
+                        <a href="/form/book/{{ $kamar->id }}" class="book-button">
                             Book This Room
                         </a>
                     </div>
-                    
+
                 </div>
             </div>
 
             <div class="deskripsi-detail-kamar">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt, cum. Nihil, debitis eum, voluptatem officia cumque reprehenderit aut quos dolore soluta, iure quisquam laudantium consequatur laborum maxime omnis vero? In ut eaque nemo perspiciatis excepturi a quasi error sit facilis. Minus, natus dignissimos ipsa voluptatibus fugit in ullam architecto est, totam recusandae quibusdam at doloribus reiciendis. Temporibus cupiditate quibusdam dolorem libero sapiente consectetur perspiciatis molestiae quod, laudantium ratione ad. Alias repellat autem rem, animi tenetur omnis, soluta laudantium est iure adipisci nemo aperiam itaque ratione corporis totam, quas nostrum quidem maiores assumenda officia delectus similique! Reiciendis, dicta! Aut, ullam qui.
+                {!! $kamar->detail_lengkap !!}
 
                 <div class="kamar-deskripsi-jumlah">
-                    Jumlah Kamar Yang Tersedia : 20
+                    Jumlah Kamar Yang Tersedia : {{ $kamar->ketersediaan }}
                 </div>
             </div>
         </div>

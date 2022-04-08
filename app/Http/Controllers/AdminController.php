@@ -1,11 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DateTime;
+use PDF;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 use App\Models\Kamar;
+use App\Models\Reservasi;
+use Carbon\Carbon;
 
 class AdminController extends Controller
 {
@@ -25,6 +29,7 @@ class AdminController extends Controller
             $e = "Data Kosong";
             return view('/admin/kamar/kamarIndex',  ['kamar' => $kamar, 'error' => $e]);
         }
+
 
         // dd($kamar);
         // return view('/admin/kamar/kamarIndex',  ['kamar' => $kamar]);
@@ -57,6 +62,7 @@ class AdminController extends Controller
                 $kamar->ketersediaan = $request->jumlah_kamar;
                 $kamar->harga = $request->harga;
                 $kamar->deskripsi = $request->deskripsi;
+                $kamar->detail_lengkap = $request->detail;
 
                 $kamar->save();
 
@@ -89,6 +95,73 @@ class AdminController extends Controller
 
         return redirect(route('kamarIndex'));
     }
+
+    public function kamarDelete(Request $request, $id)
+    {
+        Kamar::find($id)->destroy();
+
+        return redirect(route('kamarIndex'));
+    }
+
+
+    public function bookingIndex(Request $request)
+    {
+        $book = Reservasi::paginate(10);
+
+        if (request()->start_date || request()->end_date) {
+            $start_date = Carbon::parse(request()->start_date)->toDateTimeString();
+            $end_date = Carbon::parse(request()->end_date)->toDateTimeString();
+            $book = Reservasi::whereBetween('tgl_check_in',[$start_date,$end_date])->get();
+            return view('resepsionis/bookingIndex', ['book' => $book]);
+        } else if (request()->search) {
+            $book = Reservasi::where('nama', 'like',"%".request()->search."%")->get();
+
+            return view('resepsionis/bookingIndex', ['book' => $book]);
+         } else {
+            return view('resepsionis/bookingIndex', ['book' => $book]);
+        }
+        if ($request->get('cari')){
+        }
+
+    }
+
+    public function viewResi($id)
+    {
+        $resi = Reservasi::find($id);
+
+        $dateCheckin = $resi->tgl_check_in;
+        $dateCheckout = $resi->tgl_check_out;
+
+        $datetime1 = new DateTime($dateCheckin);
+        $datetime2 = new DateTime($dateCheckout);
+
+        $interval = $datetime1->diff($datetime2);
+        $days = $interval->format('%a');
+
+        return view('resepsionis/viewBooking', ['resi' => $resi, 'days' => $days]);
+    }
+
+    public function resiPDF($id)
+    {
+        $resi = Reservasi::find($id);
+
+        $dateCheckin = $resi->tgl_check_in;
+        $dateCheckout = $resi->tgl_check_out;
+
+        $datetime1 = new DateTime($dateCheckin);
+        $datetime2 = new DateTime($dateCheckout);
+
+        $interval = $datetime1->diff($datetime2);
+        $days = $interval->format('%a');
+
+        // return view('resepsionis/resiPDF',['resi'=>$resi, 'days' => $days]);
+        $pdf = PDF::loadview('resepsionis/resiPDF',['resi'=>$resi, 'days' => $days]);
+        set_time_limit(300);
+        return $pdf->stream();
+    }
+
+
+
 }
 
 

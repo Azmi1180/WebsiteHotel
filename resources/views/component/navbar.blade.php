@@ -141,16 +141,16 @@
             <a href="/" class="navlist">Home</a>
           </div>
           <div class="nav-li">
-            <a href="#tentang" class="navlist">Tentang</a>
+            <a href="/#tentang" class="navlist">Tentang</a>
           </div>
           <div class="nav-li">
-            <a href="" class="navlist">Fasilitas</a>
+            <a href="/#fasilitas" class="navlist">Fasilitas</a>
           </div>
           <div class="nav-li">
             <a href="/kamar" class="navlist">Kamar</a>
           </div>
           <div class="nav-li btn btn-primary">
-            <a href="" class="navlist-btn">Book Now</a>
+            <a href="/form/book/0" class="navlist-btn">Book Now</a>
           </div>
       </div>
     </div>

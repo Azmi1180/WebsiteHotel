@@ -16,8 +16,9 @@ body {
 }
 
 .main {
-    /* min-height: 1000px; */
-    max-height: 2000px;
+    height: max-content;
+    min-height: 100%;
+    /* max-height: 2000px; */
 }
 
 .top {
@@ -177,7 +178,7 @@ body {
         max-width: 85%;
         margin-top: 7rem;
         min-height: 200px;
-        max-height: 700px;
+        /* max-height: 700px; */
         /* border: solid 1px black; */
         background-color: #ffffff;
         /* background: yellow; */

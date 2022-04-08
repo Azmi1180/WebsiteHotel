@@ -38,7 +38,7 @@
                 <div class="mb-3">
                     <label for="detail" class="mb-1">Detail Deskripsi</label>
                     <div class="form-floating">
-                        <input id="detail" value="" placeholder="detail kamar" type="hidden" name="content">
+                        <input id="detail" value="" placeholder="detail kamar" type="hidden" name="detail">
                         <trix-editor input="detail"></trix-editor>
                     </div>
                 </div>

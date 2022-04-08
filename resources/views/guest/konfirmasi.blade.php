@@ -235,7 +235,7 @@
                         <div class="flex-d-col">
                             <label for="jumlah-orang">Tipe Kamar</label>
                             <select name="id_kamar" id="jumlah-orang">
-                                {{ $idkamar }}
+
                                 <option value="null" disabled selected>Pilih Kamar</option>
                                 @foreach ($kamar as $list)
                                     <option value="{{ $list->id }}" {{ $idkamar == $list->id ? "selected" : "" }}>

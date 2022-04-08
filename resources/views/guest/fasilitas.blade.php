@@ -86,13 +86,12 @@
 
 <div class="container container-flex">
     <div class="mid-wrapper extremewidth">
-        {{-- {{ dd($kamar) }} --}}
         @foreach ($kamar as $list)
         <a href="/kamar/detail/{{ $list->id }}" class="card-fasilitas">
             <img src="{{ asset('img/kamar/kamar_1.png') }}" alt="" class="gambar-kamar" width="35%">
             <div class="side-card">
                 <div class="judul-kamar">
-                    {{ $list->nama_kamar }}
+                    {{-- {{ $list->nama_kamar }} --}}
                 </div>
                 <div class="kamar-deskripsi">
                     {{ $list->deskripsi }}

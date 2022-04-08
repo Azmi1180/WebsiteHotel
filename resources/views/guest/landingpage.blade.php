@@ -57,7 +57,7 @@
                 </form> --}}
         </div>
     </div>
-    <div class="container container-flex" style="height: 1080px;">
+    <div class="container container-flex">
         <div class="mid-wrapper extremewidth">
             <div class="section-about" id="tentang">
                 <div class="mid-text-wrapper">

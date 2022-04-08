@@ -26,16 +26,12 @@ Route::post('/masuk', [UserController::class, "login"]);
 // Guest Client Page
 
 Route::get('/', [GuestController::class, "home"])->name('home');
-Route::get('/kamar', function () {
-    return view('guest/kamar');
-});
+Route::get('/kamar', [GuestController::class, "listKamar"]);
 
-Route::get('/kamar/detail', function () {
-    return view('guest/detailkamar');
-});
-
-
-Route::get('/book/form/{id}', [AdminController::class, "kamarCreate"]);
+Route::get('/kamar/detail/{id}', [GuestController::class, "detailKamar"]);
+Route::get('/form/book/{id}', [GuestController::class, "viewBook"]);
+Route::post('/send/data/book', [GuestController::class, "orderBook"]);
+Route::get('/book/konfirmasi/{id}', [GuestController::class, "konfirmasiOrder"]);
 
 
 Route::middleware(['auth'])->group(function () {
@@ -46,6 +42,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/admin/kamar/update/{id}', [AdminController::class, "kamarUpdate"]);
     Route::get('/admin/kamar/delete/{id}', [AdminController::class, "kamarDestroy"]);
 
+
+    Route::get('/resepsionis/booking/index', [AdminController::class, "bookingIndex"]);
+    Route::get('/resepsionis/book/view/{id}', [AdminController::class, "viewResi"]);
+    Route::get('/resepsionis/book/resipdf/{id}',[AdminController::class, "resiPDF"]);
 
 
     Route::post('/logout', [UserController::class, 'logout']);

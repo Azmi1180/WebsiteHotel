@@ -1,7 +1,9 @@
 <style>
     .footer {
         display: flex;
-        position: relative;
+        flex-direction: column;
+        justify-content: flex-end;
+        /* position: relative; */
         width: 100%;
         height: 20%;
         background-color: #009B97;
