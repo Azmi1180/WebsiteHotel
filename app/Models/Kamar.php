@@ -19,4 +19,9 @@ class Kamar extends Model
     {
         return hasMany('App\Reservasi');
     }
+
+    public function kamarReservasi()
+    {
+        return $this->hasMany('App\Models\Kamar');
+    }
 }

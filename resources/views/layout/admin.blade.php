@@ -10,72 +10,7 @@
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
     <link rel="stylesheet" href="{{ asset('css/trix.css') }}">
-    {{-- <link rel="stylesheet" href="{{ asset('/css/bootssidebars.css') }}"> --}}
-    {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
-    {{-- <script src="https://kit.fontawesome.com/a076d05399.js"></script> --}}
-    {{-- <style>
-        /* body{
-            background-color:
-        } */
-        html {
-            overflow-x: hidden;
-        }
-        .sidebar {
-            width: 200px;
-            padding: 30px 0px;
-            position: fixed;
-        }
-
-        .wrapper{
-            display: flex;
-            position: relative;
-            flex-direction: row;
-        }
-
-        .main_content{
-            width: 100%;
-            /* margin-left: 200px; */
-            background-color: aquamarine;
-            position: absolute;
-            left: 200px;
-
-        }
-
-        .main_content .header{
-            padding: 20px;
-            background: #fff;
-            color: #717171;
-            border-bottom: 1px solid #e0e4e8;
-        }
-
-        .main_content .info{
-            margin: 20px;
-            color: #717171;
-            line-height: 25px;
-        }
-
-        .main_content .info div{
-            margin-bottom: 20px;
-        }
-    </style> --}}
-
     @yield('style')
-
-
-    <!-- Scripts -->
-    {{-- <script src="{{ asset('js/app.js') }}" defer></script>   --}}
-
-    <!-- Fonts -->
-    {{-- <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"> --}}
-    {{-- <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet"> --}}
-
-
-    <!-- Styles -->
-
 
 
 </head>
@@ -86,16 +21,18 @@
         <div class="sidebar">
             <h2>1O1 Hotel</h2>
             <ul>
-                <li><a href="#">Home</a></li>
+                <li><a href="/admin/dashboard">Home</a></li>
 
                 @if (Auth::user()->role == 'resepsionis')
                     <li><a href="/resepsionis/booking/index"></i>Daftar Booking</a></li>
                 @endif
 
                 @if (Auth::user()->role == 'admin')
-                    <li><a href="#"></i>Table User</a></li>
+                    {{-- <li><a href="#"></i>Table User</a></li> --}}
+                    <li><a href="/resepsionis/booking/index"></i>Daftar Booking</a></li>
                     <li><a href="/admin/kamar/index"></i>Table Kamar</a></li>
-                    <li><a href="#"></i>Edit Fasilitas</a></li>
+                    <li><a href="/admin/fasilitas/index"></i>Table Fasilitas</a></li>
+                    <li><a href="/admin/kamarfasilitas/index"></i>Fasilitas Kamar</a></li>
                 @endif
 
             </ul>
@@ -103,7 +40,7 @@
                 <form action="/logout" method="POST">
                     @csrf
                     <button type="submit">
-                        <a type="submit">Logout</a>
+                        Logout
                     </button>
                 </form>
             </div>

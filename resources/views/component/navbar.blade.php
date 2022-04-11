@@ -140,6 +140,11 @@
           <div class="nav-li">
             <a href="/" class="navlist">Home</a>
           </div>
+          @if(Auth::user())
+           <div class="nav-li">
+             <a href="/admin/dashboard" class="navlist">Dashboard</a>
+           </div>
+          @endif
           <div class="nav-li">
             <a href="/#tentang" class="navlist">Tentang</a>
           </div>

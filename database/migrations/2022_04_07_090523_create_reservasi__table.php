@@ -16,7 +16,14 @@ class CreateReservasiTable extends Migration
         Schema::create('reservasi', function (Blueprint $table) {
             $table->bigIncrements('id');
             // $table->bigIncrements('id');
-            $table->integer('id_kamar');
+            // $table->unsignedBigInteger('id_kamar');
+            $table->foreignId('id_kamar')
+            ->references('id')
+            ->on('kamar')
+            ->constrained()
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
+
             $table->integer('jumlah_kamar');
             $table->integer('jumlah_orang');
             $table->string('email');
@@ -27,7 +34,7 @@ class CreateReservasiTable extends Migration
             $table->date('tgl_check_in');
             $table->date('tgl_check_out');
             $table->integer('total_harga');
-            $table->enum('status', ['proses', 'menginap', 'error', 'tolak', 'diterima']);
+            $table->enum('status', ['proses', 'menginap', 'selesai', 'tolak', 'diterima']);
             $table->text('catatan');
             // $table->timestamps();
             $table->timestamps();

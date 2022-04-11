@@ -3,20 +3,51 @@
 namespace App\Http\Controllers;
 use DateTime;
 use PDF;
+use Carbon\Carbon;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
+
 use App\Models\Kamar;
 use App\Models\Reservasi;
-use Carbon\Carbon;
+use App\Models\Fasilitas;
+use App\Models;
+
+
 
 class AdminController extends Controller
 {
-
     public function dashboard()
     {
-        return view('/admin/dashboard');
+        $kamar = Kamar::all();
+        $tipekamar = Kamar::count();
+        $jumlahReservasi = Reservasi::count();
+        $total_kamar = 0;
+        $total_tersedia = 0;
+        $total_terpakai = 0;
+        $totalProses = 0;
+
+        $reservasiProses = Reservasi::where('status', "proses")->get();
+
+        foreach($reservasiProses as $proses){
+            $total_terpakai += $proses->jumlah_kamar;
+            $totalProses++;
+        }
+
+        foreach($kamar as $jumlah){
+            $total_kamar += $jumlah->jumlah_kamar;
+            $total_tersedia += $jumlah->ketersediaan;
+        };
+
+        return view('/admin/dashboard', [
+            "kamarTersedia" => $total_tersedia,
+            "totalKamar" => $total_kamar,
+            "jumlahTipe" => $tipekamar,
+            "totalBooking" => $jumlahReservasi,
+            "totalProses" => $totalProses,
+            "totalTerpakai" => $total_terpakai,
+        ]);
     }
     //
 
@@ -96,9 +127,11 @@ class AdminController extends Controller
         return redirect(route('kamarIndex'));
     }
 
-    public function kamarDelete(Request $request, $id)
+
+    public function kamarDestroy($id)
     {
-        Kamar::find($id)->destroy();
+        $kamar = Kamar::find($id);
+        $kamar->delete();
 
         return redirect(route('kamarIndex'));
     }
@@ -159,6 +192,99 @@ class AdminController extends Controller
         set_time_limit(300);
         return $pdf->stream();
     }
+
+    public function fasilitasIndex()
+    {
+        $fasilitas = Fasilitas::all();
+        return view('admin/fasilitas/fasilitasIndex', ['fasilitas'=> $fasilitas]);
+    }
+
+    public function fasilitasCreate()
+    {
+        return view('admin/fasilitas/fasilitasCreate');
+    }
+
+    public function fasilitasStore(Request $request)
+    {
+
+        $request->validate([
+            'nama_fasilitas' => 'required',
+        ]);
+
+        if ($request->hasFile('image')) {
+            // dd($request->nama_fasilitas);
+            $request->validate([
+                'image' => 'mimes:jpeg,bmp,png'
+            ]);
+
+            $file = $request->file('image');
+            $filename = date('YmdHi').$file->getClientOriginalName();
+
+            $fasilitas = new Fasilitas([
+                "nama_fasilitas" => $request->nama_fasilitas,
+                "file_path" => $filename,
+                "deskripsi" => $request->deskripsi,
+                "detail_deskripsi" => $request->detail_deskripsi,
+            ]);
+            $fasilitas->save(); // Finally, save the record.
+
+            $file->move(public_path('public/Image'), $filename);
+        } else {
+            $fasilitas = new Fasilitas([
+                "nama_fasilitas" => $request->nama_fasilitas,
+                "deskripsi" => $request->deskripsi,
+                "detail_deskripsi" => $request->detail_deskripsi,
+            ]);
+            $fasilitas->save();
+        }
+
+        // $input = $request->all();
+
+        // $post = Fasilitas::create($input);
+        return redirect(route('table_fasilitas'));
+    }
+
+    public function fasilitasEdit($id)
+    {
+        $fasilitas = Fasilitas::find($id);
+
+        return view('admin/fasilitas/fasilitasEdit', ["fasilitas"=>$fasilitas]);
+    }
+
+    public function fasilitasUpdate(Request $request, $id)
+    {
+        $fasilitas = Fasilitas::find($id);
+        if($request->hasFile('image')){
+
+            $request->validate([
+                'image' => 'mimes:jpeg,bmp,png' // Only allow .jpg, .bmp and .png file types.
+            ]);
+
+            $file = $request->file('image');
+            $filename = date('YmdHi').$file->getClientOriginalName();
+
+            $fasilitas->file_path = $filename;
+
+            $file->move(public_path('public/Image'), $filename);
+        }
+
+        $fasilitas->nama_fasilitas = $request->nama_fasilitas;
+        $fasilitas->deskripsi = $request->deskripsi;
+        $fasilitas->detail_deskripsi = $request->detail_deskripsi;
+        $fasilitas->save();
+
+        return redirect(route('table_fasilitas'));
+    }
+
+    public function fasilitasDestroy($id)
+    {
+        $fasilitas = Fasilitas::find($id);
+        $fasilitas->delete();
+
+        return redirect(route('table_fasilitas'));
+    }
+
+
 
 
 

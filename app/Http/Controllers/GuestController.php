@@ -7,13 +7,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Kamar;
 use App\Models\Reservasi;
+use App\Models\Fasilitas;
 
 class GuestController extends Controller
 {
     //
     public function home()
     {
-        return view('guest/landingpage');
+        $fasilitas = Fasilitas::all();
+        return view('guest/landingpage', ['fasilitas'=>$fasilitas]);
         // return view('layout/client');
     }
 
@@ -109,8 +111,9 @@ class GuestController extends Controller
 
                 // dd($reservasi);
                 $reservasi->save();
+                // dd($reservasi->id);
 
-                return redirect(route('home'));
+                return redirect(route('bookpreview', [$reservasi->id]));
                 // $create_kamar = Kamar::create($data_request);
 
             } catch(Exception $e){
@@ -138,5 +141,11 @@ class GuestController extends Controller
         $days = $interval->format('%a');
 
         return view('guest/konfirmasi', ['resi'=>$book, 'days'=>$days]);
+    }
+
+    public function successOrder($id)
+    {
+        $reservasi = Reservasi::find($id);
+        $reservasi->status = "proses";
     }
 }

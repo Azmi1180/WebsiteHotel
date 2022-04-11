@@ -90,6 +90,7 @@
         background-color: #009B97;
         text-align: center;
         width: 100%;
+        cursor: pointer;
     }
 
     .deskripsi-detail-kamar {
@@ -238,11 +239,25 @@
                                 {{ $idkamar }}
                                 <option value="null" disabled selected>Pilih Kamar</option>
                                 @foreach ($kamar as $list)
-                                    <option value="{{ $list->id }}" {{ $idkamar == $list->id ? "selected" : "" }}>
+                                @if (!$list->ketersediaan <= 0)
+                                {{-- Appear --}}
+                                <option value="{{ $list->id }}" {{ $idkamar == $list->id ? "selected" : "" }}>
+                                    <h4>{{ $list->nama_kamar }} ||</h4>
+                                    <h5>Harga Rp. {{ number_format($list->harga, 0, '', '.') }},00 / malam</h5>
+                                    <h5>|| Tersedia {{ $list->ketersediaan }} kamar</h5>
+                                </option>
+                                @else
+                                {{-- Disappear --}}
+                                <option value="{{ $list->id }}" {{ $idkamar == $list->id ? "selected" : "" }} disabled>
+                                    <s>
+                                        KAMAR PENUH !!
                                         <h4>{{ $list->nama_kamar }} ||</h4>
                                         <h5>Harga Rp. {{ number_format($list->harga, 0, '', '.') }},00 / malam</h5>
                                         <h5>|| Tersedia {{ $list->ketersediaan }} kamar</h5>
-                                    </option>
+                                    </s>
+                                </option>
+
+                                @endif
                                 @endforeach
                             </select>
                         </div>
@@ -299,12 +314,11 @@
                     </div>
                 </div>
                 <div class="button-section">
-
-                    <a class="book-button" style="cursor: pointer">
-                        <button type="submit" style="background: none; border:none; font-size:18px; color:white;">
+                    <button class="book-button" type="submit" style="border:none; font-size:18px; color:white;">
+                        {{-- <a class="book-button" style=""> --}}
                             Reservasi Kamar Ini
-                        </button>
-                    </a>
+                        {{-- </a> --}}
+                    </button>
                 </div>
             </div>
         </div>

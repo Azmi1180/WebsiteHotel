@@ -45,62 +45,73 @@
 </style>
 @section('admin-content')
 <div class="top-section">
-    <div class="card card-dashboard">
-        <div class="card-head card-header-dashboard">
-            <h3>Kamar Terpakai</h3>
+    <div class="d-flex flex-column">
+        <div class="d-flex flex-row">
+
+            <div class="card card-dashboard">
+                <div class="card-head card-header-dashboard">
+                    <h3>Kamar Terpakai</h3>
+                </div>
+                <div class="card-content">
+                    <h5 class="display-data-count">
+                        {{ $totalTerpakai }}
+                    </h5>
+                </div>
+            </div>
+
+            <div class="card card-dashboard">
+                <div class="card-head card-header-dashboard">
+                    <h3>Kamar Tersedia</h3>
+                </div>
+                <div class="card-content">
+                    <h5 class="display-data-count">
+                        {{ $kamarTersedia }}
+                    </h5>
+                </div>
+            </div>
+
+            <div class="card card-dashboard">
+                <div class="card-head card-header-dashboard">
+                    <h3>Total Order</h3>
+                </div>
+                <div class="card-content">
+                    <h5 class="display-data-count">
+                        {{ $totalBooking }}
+                    </h5>
+                </div>
+            </div>
         </div>
-        <div class="card-content">
-            <h5 class="display-data-count">
-                12
-            </h5>
+
+        <div class="d-flex d-row">
+
+            <div class="card card-dashboard">
+                <div class="card-head card-header-dashboard">
+                    <h3>Order Status Proses</h3>
+                </div>
+                <div class="card-content">
+                    <h5 class="display-data-count">
+                        {{ $totalProses }}
+                    </h5>
+                </div>
+            </div>
+
+            <div class="card card-dashboard">
+                <div class="card-head card-header-dashboard">
+                    <h3>Total Kamar</h3>
+                </div>
+                <div class="card-content">
+                    <h5 class="display-data-count">
+                        12
+                    </h5>
+                </div>
+            </div>
         </div>
+
     </div>
 
-    <div class="card card-dashboard">
-        <div class="card-head card-header-dashboard">
-            <h3>Kamar Tersedia</h3>
-        </div>
-        <div class="card-content">
-            <h5 class="display-data-count">
-                13
-            </h5>
-        </div>
-    </div>
 
-    <div class="card card-dashboard">
-        <div class="card-head card-header-dashboard">
-            <h3>Total Bayar</h3>
-        </div>
-        <div class="card-content">
-            <h5 class="display-data-count">
-                14
-            </h5>
-        </div>
-    </div>
-
-    <div class="card card-dashboard">
-        <div class="card-head card-header-dashboard">
-            <h3>Total </h3>
-        </div>
-        <div class="card-content">
-            <h5 class="display-data-count">
-                12
-            </h5>
-        </div>
-    </div>
-
-    <div class="card card-dashboard">
-        <div class="card-head card-header-dashboard">
-            <h3>Total Kamar</h3>
-        </div>
-        <div class="card-content">
-            <h5 class="display-data-count">
-                12
-            </h5>
-        </div>
-    </div>
 
 
 </div>
-    
+
 @endsection

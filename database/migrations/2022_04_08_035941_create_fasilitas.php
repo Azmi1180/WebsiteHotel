@@ -15,6 +15,10 @@ class CreateFasilitas extends Migration
     {
         Schema::create('fasilitas', function (Blueprint $table) {
             $table->id();
+            $table->string('nama_fasilitas');
+            $table->text('deskripsi');
+            $table->text('detail_deskripsi');
+            $table->text('file_path')->nullable();
             $table->timestamps();
         });
     }
